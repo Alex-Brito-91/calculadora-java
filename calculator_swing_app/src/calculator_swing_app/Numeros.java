@@ -1,8 +1,8 @@
 package calculator_swing_app;
 
 import javax.swing.JLayeredPane;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +10,9 @@ public class Numeros extends JLayeredPane implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField txtText; 
+	private JFormattedTextField txtText; 
 	
-	public Numeros(JTextField txtText) {
+	public Numeros(JFormattedTextField txtText) {
 		this.txtText = txtText;
 		
 		JButton btn1 = new JButton("1");

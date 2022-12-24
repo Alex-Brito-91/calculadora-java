@@ -1,20 +1,23 @@
 package calculator_swing_app;
 
 import javax.swing.JLayeredPane;
-import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 public class Funcoes extends JLayeredPane implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtText;
+	private JFormattedTextField txtText;
 	
 	private char op;
-	private double value1;
-	private double value2;
+	private BigDecimal value1;
+	private BigDecimal value2;
 	
 	private JButton btnAdd;
 	private JButton btnSub;
@@ -24,7 +27,7 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 	private JButton btnEquals;
 	private JButton btnClear;
 	
-	public Funcoes(JTextField txtText) {
+	public Funcoes(JFormattedTextField txtText) {
 		this.txtText = txtText;
 		
 		btnAdd = new JButton("+");
@@ -78,30 +81,34 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 			op = '\u0000';
 			txtText.setText("");
 			
-		} else if (btn == btnEquals) {
-			value2 = Double.parseDouble(txtText.getText());
+		} 
+		
+		else if (btn == btnEquals) {
 			
-			double result = 0.0;
+			value2 = new BigDecimal(txtText.getText());
+			BigDecimal result = new BigDecimal(0);
+			
 			
 			if (op == '+') {
-				result = value1 + value2;
+				result = result.add(value1.add(value2));
 			} else if (op == '-') {
-				result = value1 - value2;
+				result = result.add(value1.subtract(value2));
 			} else if (op == 'X') {
-				result = value1 * value2;
+				result = result.add(value1.multiply(value2));
 			} else if (op == '/') {
-				result = value1 / value2;
+				result = result.add(value1.divide(value2));
 			}
 			
-			txtText.setText(String.valueOf(result));
+			DecimalFormat formato = new DecimalFormat("#,###,##0.00");
+			txtText.setText(formato.format(result));
 			op = '\u0000'; 
-			value1 = result;
-			value2 = 0;
+			value1.add(result);
+			value2 = new BigDecimal(0);
 			
 		} else {
 			
 			op = btn.getText().charAt(0);
-			value1 = Double.parseDouble(txtText.getText());
+			value1 = new BigDecimal(txtText.getText());
 			txtText.setText("");
 		}
 		
