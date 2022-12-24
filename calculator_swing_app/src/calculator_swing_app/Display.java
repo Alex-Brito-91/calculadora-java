@@ -7,6 +7,8 @@ import java.awt.Font;
 
 public class Display extends JLayeredPane {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private static JTextField txtNumber;
 	
 	public Display() {

@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 public class Numeros extends JLayeredPane implements ActionListener {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField txtText; 
 	
 	public Numeros(JTextField txtText) {
@@ -75,7 +77,7 @@ public class Numeros extends JLayeredPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(txtText.getText().length() == 20) {
+		if(txtText.getText().length() == 15) {
 			return;
 		}
 		

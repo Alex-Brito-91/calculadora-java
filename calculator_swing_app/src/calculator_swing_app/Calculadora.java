@@ -8,6 +8,8 @@ import java.awt.Color;
 
 public class Calculadora extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	public Calculadora() throws Exception {
 		getContentPane().setForeground(new Color(255, 255, 255));
 
