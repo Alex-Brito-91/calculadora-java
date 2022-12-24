@@ -1,11 +1,15 @@
 package calculator_swing_app;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class Funcoes extends JLayeredPane {
 	
-	public Funcoes() {
+	private JTextField txtText;
+	
+	public Funcoes(JTextField txtText) {
+		this.txtText = txtText;
 		
 		JButton btnClear = new JButton("C");
 		btnClear.setBounds(7, 15, 53, 40);

@@ -40,7 +40,7 @@ public class Calculadora extends JFrame {
 		numeros.setBounds(15, 156, 193, 201);
 		getContentPane().add(numeros);
 
-		Funcoes funcoes = new Funcoes();
+		Funcoes funcoes = new Funcoes(display.getTxtNumber());
 		funcoes.setBounds(12, 92, 274, 265);
 		getContentPane().add(funcoes);
 
