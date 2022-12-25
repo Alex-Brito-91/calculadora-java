@@ -14,12 +14,12 @@ public class Display extends JLayeredPane {
 	public Display() {
 		
 		txtNumber = new JFormattedTextField();
-		txtNumber.setFont(new Font("DialogInput", Font.PLAIN, 25));
+		txtNumber.setFont(new Font("DialogInput", Font.PLAIN, 18));
 		txtNumber.setBackground(new Color(255, 255, 255));
 		txtNumber.setForeground(new Color(255, 255, 255));
 		txtNumber.setHorizontalAlignment(JFormattedTextField.RIGHT);
 		txtNumber.setBounds(2, 10, 264, 49);
-		txtNumber.setColumns(12);
+		txtNumber.setColumns(20);
 		txtNumber.setDisabledTextColor(Color.BLACK);
 		txtNumber.setEnabled(false);
 		add(txtNumber);
