@@ -94,11 +94,13 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 				result = result.add(value1.multiply(value2));
 			} else if (op == '/') {
 				result = result.add(value1.divide(value2));
+			} else if (op == '%') {
+				BigDecimal percent = new BigDecimal(100);
+				result = result.add(value1.divide(percent).multiply(value2));
 			}
 
 			valor = new BigDecimal(0);
 			valor = valor.add(result);
-
 			txtText.setText(result.toString());
 
 			op = '\u0000';
