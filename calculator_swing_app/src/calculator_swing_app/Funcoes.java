@@ -4,6 +4,8 @@ import javax.swing.JLayeredPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
@@ -101,7 +103,10 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 
 			valor = new BigDecimal(0);
 			valor = valor.add(result);
-			txtText.setText(result.toString());
+			
+			DecimalFormat vf = new DecimalFormat("###,###,###.000");
+			String valorString = vf.format(result);
+			txtText.setText(valorString);
 
 			op = '\u0000';
 			value1.add(valor);
