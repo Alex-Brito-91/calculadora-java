@@ -14,8 +14,8 @@ public class Display extends JLayeredPane {
 	public Display() {
 		
 		txtNumber = new JFormattedTextField();
-		txtNumber.setFont(new Font("DialogInput", Font.PLAIN, 18));
-		txtNumber.setBackground(new Color(255, 255, 255));
+		txtNumber.setFont(new Font("DialogInput", Font.ITALIC, 22));
+		txtNumber.setBackground(new Color(154, 198, 129));
 		txtNumber.setForeground(new Color(255, 255, 255));
 		txtNumber.setHorizontalAlignment(JFormattedTextField.RIGHT);
 		txtNumber.setBounds(2, 10, 264, 49);

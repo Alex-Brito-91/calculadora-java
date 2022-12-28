@@ -3,7 +3,6 @@ package calculator_swing_app;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-
 import java.awt.Color;
 
 public class Calculadora extends JFrame {
