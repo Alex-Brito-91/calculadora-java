@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Funcoes extends JLayeredPane implements ActionListener {
@@ -114,8 +115,10 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 				BigDecimal percent = new BigDecimal(100);
 				result = result.add(value1.divide(percent).multiply(value2));
 			}
-			DecimalFormat vf = new DecimalFormat("###,###.##");
-			vf.setMaximumFractionDigits(2);
+			
+			DecimalFormat vf = new DecimalFormat("###,###.###");
+			
+			result.setScale(3, RoundingMode.HALF_EVEN);
 			String valorString = vf.format(result);
 			txtText.setText(valorString);
 
@@ -127,7 +130,8 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 
 			op = btn.getText().charAt(0);
 			
-			String valueFormatado = (txtText.getText().replaceAll("[^0-9]+", ""));
+			String valueFormatado = (txtText.getText().replaceAll(".", ""));
+			valueFormatado.replaceAll(",", ".");
 			value1 = new BigDecimal(valueFormatado);
 			txtText.setText("");
 		}
