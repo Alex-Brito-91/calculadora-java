@@ -130,9 +130,9 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 
 			op = btn.getText().charAt(0);
 			
-			String valueFormatado = (txtText.getText().replaceAll(".", ""));
-			valueFormatado.replaceAll(",", ".");
-			value1 = new BigDecimal(valueFormatado);
+			String valueFormatado = (txtText.getText().replaceAll("\\.", ""));
+			String valueFormatado2 = (valueFormatado.replaceAll(",", "."));
+			value1 = new BigDecimal(valueFormatado2);
 			txtText.setText("");
 		}
 
