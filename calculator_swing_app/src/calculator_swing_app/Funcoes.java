@@ -100,39 +100,38 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 
 		} else if (btn == btnEquals) {
 
-			value2 = new BigDecimal(txtText.getText());
+			String valueString = (txtText.getText().replaceAll(",", "."));
+			value2 = new BigDecimal(valueString).setScale(3, RoundingMode.HALF_EVEN);
 			result = new BigDecimal(0);
 
 			if (op == '+') {
-				result = result.add(value1.add(value2));
+				result = value1.add(value2);
 			} else if (op == '-') {
-				result = result.add(value1.subtract(value2));
+				result = value1.subtract(value2);
 			} else if (op == 'X') {
-				result = result.add(value1.multiply(value2));
+				result = value1.multiply(value2);
 			} else if (op == '/') {
-				result = result.add(value1.divide(value2));
+				result = value1.divide(value2);
 			} else if (op == '%') {
 				BigDecimal percent = new BigDecimal(100);
-				result = result.add(value1.divide(percent).multiply(value2));
+				result = value1.divide(percent).multiply(value2);
 			}
 			
-			DecimalFormat vf = new DecimalFormat("###,###.###");
+			DecimalFormat vf = new DecimalFormat("#,##0.00");
 			
-			result.setScale(3, RoundingMode.HALF_EVEN);
-			String valorString = vf.format(result);
-			txtText.setText(valorString);
+			BigDecimal result2 = result.setScale(3, RoundingMode.HALF_EVEN);
+			txtText.setText(vf.format(result2));
 
 			op = '\u0000';
-			value1.add(result);
+			value1.add(result2);
 			value2 = new BigDecimal(0);
 
 		} else {
 
 			op = btn.getText().charAt(0);
 			
-			String valueFormatado = (txtText.getText().replaceAll("\\.", ""));
-			String valueFormatado2 = (valueFormatado.replaceAll(",", "."));
-			value1 = new BigDecimal(valueFormatado2);
+			String valueString2 = (txtText.getText().replaceAll(",", "."));
+			value1 = new BigDecimal(valueString2).setScale(3, RoundingMode.HALF_EVEN);
 			txtText.setText("");
 		}
 
