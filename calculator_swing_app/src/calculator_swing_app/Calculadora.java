@@ -7,7 +7,7 @@ import java.awt.Color;
 
 public class Calculadora extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	public Calculadora() throws Exception {
 		getContentPane().setForeground(new Color(255, 255, 255));
@@ -31,17 +31,17 @@ public class Calculadora extends JFrame {
 		setLocation(400, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Display display = new Display();
-		display.getTxtNumber().setBounds(2, 10, 264, 75);
-		display.setForeground(new Color(0, 0, 0));
-		display.setBounds(12, 0, 274, 91);
-		getContentPane().add(display);
+		Tela tela = new Tela();
+		tela.getTextoTela().setBounds(2, 10, 264, 75);
+		tela.setForeground(new Color(0, 0, 0));
+		tela.setBounds(12, 0, 274, 91);
+		getContentPane().add(tela);
 
-		Numeros numeros = new Numeros(display.getTxtNumber());
+		Numeros numeros = new Numeros(tela.getTextoTela());
 		numeros.setBounds(15, 156, 193, 201);
 		getContentPane().add(numeros);
 
-		Funcoes funcoes = new Funcoes(display.getTxtNumber());
+		Funcoes funcoes = new Funcoes(tela.getTextoTela());
 		funcoes.setBounds(12, 92, 274, 265);
 		getContentPane().add(funcoes);
 

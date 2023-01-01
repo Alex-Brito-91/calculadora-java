@@ -9,12 +9,12 @@ import java.awt.Font;
 
 public class Numeros extends JLayeredPane implements ActionListener {
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	
-	private JFormattedTextField txtText; 
+	private JFormattedTextField textoTela; 
 	
-	public Numeros(JFormattedTextField txtText) {
-		this.txtText = txtText;
+	public Numeros(JFormattedTextField textoTela) {
+		this.textoTela = textoTela;
 		
 		JButton btn1 = new JButton("1");
 		btn1.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
@@ -72,15 +72,21 @@ public class Numeros extends JLayeredPane implements ActionListener {
 		
 		JButton btn0 = new JButton("0");
 		btn0.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
-		btn0.setBounds(3, 160, 116, 40);
+		btn0.setBounds(3, 160, 55, 40);
 		btn0.addActionListener(this);
 		add(btn0);
 		
-		JButton btnDot = new JButton(".");
-		btnDot.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
-		btnDot.setBounds(125, 160, 55, 40);
-		btnDot.addActionListener(this);
-		add(btnDot);
+		JButton btPonto = new JButton(".");
+		btPonto.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
+		btPonto.setBounds(125, 160, 55, 40);
+		btPonto.addActionListener(this);
+		add(btPonto);
+		
+		JButton btVirgula = new JButton(",");
+		btVirgula.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
+		btVirgula.setBounds(64, 160, 55, 40);
+		btVirgula.addActionListener(this);
+		add(btVirgula);
 		
 		setVisible(true);
 		
@@ -89,13 +95,12 @@ public class Numeros extends JLayeredPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(txtText.getText().length() == 15) {
+		if(textoTela.getText().length() == 20) {
 			return;
 		}
 		
 		JButton btn = (JButton) e.getSource();
 		String number = btn.getText();
-		txtText.setText(txtText.getText() + number);
+		textoTela.setText(textoTela.getText() + number);
 	}
-	
 }

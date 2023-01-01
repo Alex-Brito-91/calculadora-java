@@ -8,30 +8,29 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Funcoes extends JLayeredPane implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
-	private JFormattedTextField txtText;
+	private JFormattedTextField textoTela;
 
-	private char op;
-	private BigDecimal value1;
-	private BigDecimal value2;
-	private BigDecimal result;
+	private char operador;
+	private BigDecimal valor1;
+	private BigDecimal valor2;
+	private BigDecimal resultado;
 
 	private JButton btnAdd;
 	private JButton btnSub;
 	private JButton btnMult;
 	private JButton btnDiv;
 	private JButton btnPercent;
-	private JButton btnEquals;
+	private JButton btnIgual;
 	private JButton btnClear;
 
 	public Funcoes(JFormattedTextField txtText) {
-		this.txtText = txtText;
+		this.textoTela = txtText;
 
 		btnAdd = new JButton("+");
 		btnAdd.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
@@ -68,12 +67,12 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 		btnPercent.addActionListener(this);
 		add(btnPercent);
 
-		btnEquals = new JButton("=");
-		btnEquals.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
-		btnEquals.setBackground(new Color(154, 198, 129));
-		btnEquals.setBounds(206, 189, 55, 75);
-		btnEquals.addActionListener(this);
-		add(btnEquals);
+		btnIgual = new JButton("=");
+		btnIgual.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
+		btnIgual.setBackground(new Color(154, 198, 129));
+		btnIgual.setBounds(206, 189, 55, 75);
+		btnIgual.addActionListener(this);
+		add(btnIgual);
 
 		btnClear = new JButton("C");
 		btnClear.setFont(new Font("DialogInput", Font.BOLD | Font.ITALIC, 20));
@@ -88,51 +87,51 @@ public class Funcoes extends JLayeredPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (txtText.getText().isEmpty()) {
+		if (textoTela.getText().isEmpty()) {
 			return;
 		}
 
 		JButton btn = (JButton) e.getSource();
+		DecimalFormat vf = new DecimalFormat("#,###.00");
 
 		if (btn == btnClear) {
-			op = '\u0000';
-			txtText.setText("");
+			operador = '\u0000';
+			textoTela.setText("");
 
-		} else if (btn == btnEquals) {
+		} else if (btn == btnIgual) {
 
-			String valueString = (txtText.getText().replaceAll(",", "."));
-			value2 = new BigDecimal(valueString).setScale(3, RoundingMode.HALF_EVEN);
-			result = new BigDecimal(0);
+			String valor2Formatado = (textoTela.getText().replaceAll("\\.", ""));
+			String valor2Formatado2 = (valor2Formatado.replaceAll(",", "."));
+			valor2 = new BigDecimal(valor2Formatado2);
+			resultado = new BigDecimal(0);
 
-			if (op == '+') {
-				result = value1.add(value2);
-			} else if (op == '-') {
-				result = value1.subtract(value2);
-			} else if (op == 'X') {
-				result = value1.multiply(value2);
-			} else if (op == '/') {
-				result = value1.divide(value2);
-			} else if (op == '%') {
+			if (operador == '+') {
+				resultado = valor1.add(valor2);
+			} else if (operador == '-') {
+				resultado = valor1.subtract(valor2);
+			} else if (operador == 'X') {
+				resultado = valor1.multiply(valor2);
+			} else if (operador == '/') {
+				resultado = valor1.divide(valor2);
+			} else if (operador == '%') {
 				BigDecimal percent = new BigDecimal(100);
-				result = value1.divide(percent).multiply(value2);
+				resultado = valor1.divide(percent).multiply(valor2);
 			}
 			
-			DecimalFormat vf = new DecimalFormat("#,##0.00");
-			
-			BigDecimal result2 = result.setScale(3, RoundingMode.HALF_EVEN);
-			txtText.setText(vf.format(result2));
+			textoTela.setText(vf.format(resultado));
 
-			op = '\u0000';
-			value1.add(result2);
-			value2 = new BigDecimal(0);
+			operador = '\u0000';
+			valor1.add(resultado);
+			valor2 = new BigDecimal(0);
 
 		} else {
 
-			op = btn.getText().charAt(0);
+			operador = btn.getText().charAt(0);
 			
-			String valueString2 = (txtText.getText().replaceAll(",", "."));
-			value1 = new BigDecimal(valueString2).setScale(3, RoundingMode.HALF_EVEN);
-			txtText.setText("");
+			String valor1Formatado = (textoTela.getText().replaceAll("\\.", ""));
+			String valor1Formatado2 = (valor1Formatado.replaceAll(",", "."));
+			valor1 = new BigDecimal(valor1Formatado2);
+			textoTela.setText("");
 		}
 
 	}
